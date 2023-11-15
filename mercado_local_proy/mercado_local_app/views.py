@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import CustomUserCreationForm
-from mercado_local_app.models import Producto
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+
+
+
+from mercado_local_app.models import Producto, CustomUser
 
 
 def pagina_inicio(request):
@@ -21,7 +26,6 @@ def register_view(request):
         form = CustomUserCreationForm()
 
     return render(request, 'register.html', {'form': form})
-
 
 def crear_producto(request):
     return HttpResponse("Producto creado")

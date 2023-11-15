@@ -21,12 +21,12 @@ class CustomUser(AbstractUser):
     )
     
 
-class Producto():
+class Producto(models.Model):
     vendedor = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='productos')
-    nombreProducto = models.CharField(max_length=30, null= False, blank= False)
-    descripcionProducto = models.CharField(max_length=30, null= False, blank= False)
+    nombreProducto = models.CharField(max_length=30, null=False, blank=False)
+    descripcionProducto = models.CharField(max_length=30, null=False, blank=False)
     imagenProducto = models.ImageField(default="null")
-    categoria = models.CharField()
+    categoria = models.CharField(max_length=30)  
     precio = models.FloatField()
 
 
