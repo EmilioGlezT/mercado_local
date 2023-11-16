@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'mercado_local_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+AUTH_USER_MODEL = "mercado_local_app.CustomUser"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,9 +79,9 @@ WSGI_APPLICATION = 'mercado_local_proy.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-         "NAME": "mercadoLocal",
+         "NAME": "MercadoLocalDB",
         "USER": "postgres",
-        "PASSWORD": "root",
+        "PASSWORD": "holaEmilio",
         "HOST": "127.0.0.1",
         "PORT": "5432",
     }
