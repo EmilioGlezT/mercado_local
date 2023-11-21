@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block title%} Lista completa de usuarios: {% endblock %}
+
+{% block content%}
+<h1> Lista completa de usuarios:</h1>
+<ul>
+    {% for usuarios in object_list %}
+    <li> nombre:  {{usuarios.username}}  id: {{usuarios.id}}</li>
+    {% endfor%}
+</ul>
+
+{% endblock %}
