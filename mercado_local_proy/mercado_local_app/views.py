@@ -11,6 +11,10 @@ from mercado_local_app.models import  CustomUser, Vendedor, Cliente
 
 
 # Clases genericas ListView Se utilizan para traer un listado completo de un modelo
+
+def index(request):
+    return render(request, 'inicio.html')
+
 class UsersListView(ListView):
     model = CustomUser
     template_name="ListViewsTemplates/ListUsers.html"
@@ -22,7 +26,6 @@ class VendedoresListView(ListView):
 class ClientesListView(ListView):
     model = Cliente
     template_name="ListViewsTemplates/ListCLientes.html"
-
     
 def login_view(request):
     return render(request, 'login.html')
