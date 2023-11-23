@@ -3,7 +3,7 @@ import datetime
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import CustomUser
 from mercado_local_app.models import  CustomUser, Vendedor, Cliente
 
@@ -23,7 +23,7 @@ class ClientesListView(ListView):
     model = Cliente
     template_name="ListViewsTemplates/ListCLientes.html"
 
-    
+
 def login_view(request):
     return render(request, 'login.html')
 
