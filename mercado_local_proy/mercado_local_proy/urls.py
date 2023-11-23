@@ -17,10 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from mercado_local_app.views import UsersListView, VendedoresListView, ClientesListView
-
+from mercado_local_app import views
+import mercado_local_app.views
+from registro_productos import views
+import registro_productos.views
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', mercado_local_app.views.index, name="index"),
     path('getAllUsers/',UsersListView.as_view()),
     path('getAllVendedores/',VendedoresListView.as_view()),
     path('getAllClientes/',ClientesListView.as_view()),
+    path('createProduct/' , registro_productos.views.createProducto, name = "create"),
+    path('crear-producto/', registro_productos.views.crearProduto),
+    path('save-product', registro_productos.views.saveProducto, name= 'save')
 ]
