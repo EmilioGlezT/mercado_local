@@ -19,16 +19,16 @@ def crearProduto(request, negocio, nombreProducto, descripcionProducto, imagenPr
     return HttpResponse(f"Producto creado: <strong>{producto.nombreProducto}" )
     
 def saveProducto(request):
-    if request.method == 'GET':
+    if request.method == 'POST':
         """negocio = request.GET.get('negocio')"""
 
         negocioid = 1
         negocio = Negocio.objects.get(id=negocioid)
-        nombreProducto = request.GET.get('nombreProducto')
-        descripcionProducto = request.GET.get('descripcionProducto')
-        imagenProducto = request.GET.get('imagenProducto')
-        categoria = request.GET.get('categoria')
-        precio = request.GET.get('precio')     
+        nombreProducto = request.POST.get('nombreProducto')
+        descripcionProducto = request.POST.get('descripcionProducto')
+        imagenProducto = request.POST.get('imagenProducto')
+        categoria = request.POST.get('categoria')
+        precio = request.POST.get('precio')     
 
         producto = Producto(
         negocio = negocio,
