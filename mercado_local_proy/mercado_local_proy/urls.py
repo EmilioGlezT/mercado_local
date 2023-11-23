@@ -27,7 +27,7 @@ urlpatterns = [
     path('getAllUsers/',UsersListView.as_view()),
     path('getAllVendedores/',VendedoresListView.as_view()),
     path('getAllClientes/',ClientesListView.as_view()),
-    path('createProduct/' , registro_productos.views.createProducto),
+    path('createProduct/' , registro_productos.views.createProducto, name = "create"),
     path('crear-producto/', registro_productos.views.crearProduto),
-    path('save-product', registro_productos.views.saveProducto)
+    path('save-product', registro_productos.views.saveProducto, name= 'save')
 ]

@@ -2,8 +2,32 @@
 
 {% load static %}
 
+{% block title %} formulario {% endblock %}
 
-<link rel="stylesheet" href="{% static 'styles.css' %}">  <!-- Elimina 'css/' de la ruta -->
+{% block content %}
+
+<h1 class = 'title'>Formulario</h1>
+
+<form action="{% url 'save' %}" method="GET">
+    <label for='negocio'>Negocio</label>
+    <input type='text' name='negocio' placeholder='Nombre del negocio'>
+
+    <label for='nombreProducto'>Nombre del producto</label>
+    <textarea name='nombreProducto' placeholder='Nombre del producto'></textarea>
+
+    <label for='descripcionProducto'>Descripción del producto</label>
+    <textarea name='descripcionProducto' placeholder='Descripción del producto'></textarea>
+
+    <label for='imagenProducto'>Imagen del Producto:</label>
+    <input type='file' name='imagenProducto' accept='image/*' required>
+
+    <label for='precio'>Precio:</label>
+    <input type='text' name='precio' required>
+
+    <input type='submit' value='Guardar'>
+
+    {% csrf_token %}
+</form>
 
 
-<h1>Registrar un producto</h1>
+{% endblock %}
