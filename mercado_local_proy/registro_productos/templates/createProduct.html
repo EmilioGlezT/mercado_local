@@ -6,23 +6,52 @@
 
 {% block content %}
 
-<h1 class = 'title'>Formulario</h1>
+<h1 class = 'title'>Nuevo Producto</h1>
 
 <form action="{% url 'save' %}" method="GET">
     <label for='negocio'>Negocio</label>
     <input type='text' name='negocio' placeholder='Nombre del negocio'>
 
+    <br>
+
     <label for='nombreProducto'>Nombre del producto</label>
     <textarea name='nombreProducto' placeholder='Nombre del producto'></textarea>
+    <br>
 
     <label for='descripcionProducto'>Descripción del producto</label>
     <textarea name='descripcionProducto' placeholder='Descripción del producto'></textarea>
+    <br>
 
     <label for='imagenProducto'>Imagen del Producto:</label>
     <input type='file' name='imagenProducto' accept='image/*' required>
+    <br>
+
+    <label for='categoria'>Categoría:</label>
+    <select name='categoria' required>
+        <option value='Electronica'>Electronica</option>
+        <option value='Ropa'>Ropa</option>
+        <option value='Libros'>Libros</option>
+        <option value='Hogar'>Hogar</option>
+        <option value='Libros'>Libros</option>
+        <option value='Juguetes y juegos'>Juguetes y juegos</option>
+        <option value='Joyeria'>Joyeria</option>
+        <option value='Deportes'>Deportes</option>
+        <option value='Belleza y cuidado personal'>Belleza y cuidado personal</option>
+        <option value='Alimentos y bebidas'>Alimentos y bebidas</option>
+        <option value='Herramientas para el hogar'>Herramientas para el hogar</option>
+
+
+
+
+
+
+
+    </select>
+    <br>
 
     <label for='precio'>Precio:</label>
     <input type='text' name='precio' required>
+    <br>
 
     <input type='submit' value='Guardar'>
 

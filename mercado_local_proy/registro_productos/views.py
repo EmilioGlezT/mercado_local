@@ -27,11 +27,13 @@ def saveProducto(request):
         nombreProducto = request.GET.get('nombreProducto')
         descripcionProducto = request.GET.get('descripcionProducto')
         imagenProducto = request.GET.get('imagenProducto')
+        categoria = request.GET.get('categoria')
         precio = request.GET.get('precio')     
 
         producto = Producto(
         negocio = negocio,
         nombreProducto = nombreProducto,
+        categoria = categoria,
         descripcionProducto = descripcionProducto,
         imagenProducto = imagenProducto,
         precio = precio
