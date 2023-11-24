@@ -12,7 +12,7 @@
     {% if catalogo_principal %}
         <ul>
             {% for producto in catalogo_principal %}
-            <li><a href="{% url 'detalle_producto' producto.id %}">
+            <li><a href="{% url 'productos_app:detalle_producto' producto.id %}">
                 {{ producto.nombreProducto}}</a></li>
             {% endfor %}
         </ul>

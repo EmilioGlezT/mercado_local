@@ -11,6 +11,7 @@ class Producto(models.Model):
     imagenProducto = models.ImageField(default="null")
     categoria = models.CharField(max_length=30)  
     precio = models.FloatField()
+    existencias = models.IntegerField(null=False, default=0)
 
 
     
