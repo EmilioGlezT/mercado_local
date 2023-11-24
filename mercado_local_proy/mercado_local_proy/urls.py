@@ -21,9 +21,11 @@ from mercado_local_app import views
 import mercado_local_app.views
 from registro_productos import views
 import registro_productos.views
+from django.urls import include, path
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', mercado_local_app.views.index, name="index"),
+    path('productos_app/', include('productos_app.urls')),
     path('getAllUsers/',UsersListView.as_view()),
     path('getAllVendedores/',VendedoresListView.as_view()),
     path('getAllClientes/',ClientesListView.as_view()),
