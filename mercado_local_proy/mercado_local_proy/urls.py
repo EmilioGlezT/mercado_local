@@ -18,12 +18,17 @@ from django.contrib import admin
 from django.urls import path
 from mercado_local_app.views import UsersListView, VendedoresListView, ClientesListView
 from mercado_local_app import views
+from productos_app.views import Catalogo_ListView, DetalleProductoView
 import mercado_local_app.views
 from registro_productos import views
 import registro_productos.views
+
+app_name = 'productos_app'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', mercado_local_app.views.index, name="index"),
+    path('', Catalogo_ListView.as_view(), name="inicio"),
+    path("<int:pk>/", DetalleProductoView.as_view(), name="detalle_producto"),
     path('getAllUsers/',UsersListView.as_view()),
     path('getAllVendedores/',VendedoresListView.as_view()),
     path('getAllClientes/',ClientesListView.as_view()),
