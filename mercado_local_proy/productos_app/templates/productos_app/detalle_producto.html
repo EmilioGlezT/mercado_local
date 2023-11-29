@@ -19,7 +19,7 @@
     <p>Contenido: {{ producto.descripcionProducto}}</p>
 
     <button><a href="{% url 'productos_app:inicio' %}">Volver al inicio</a></button>
-    <button>Agregar al carrito</button>
+    <button><a href="{% url 'compra_app:carrito' %}">Agregar al carrito</a></button>
     <button>Comprar</button>
     
 </body>
