@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+       
+        button a {
+            text-decoration: none; 
+            color: inherit; 
+            cursor: pointer; 
+        }
+    </style>
 </head>
 <body>
     
     <h1>{{ producto.nombreProducto }}</h1>
     <p>Contenido: {{ producto.descripcionProducto}}</p>
 
-    <a href="{% url 'productos_app:inicio' %}">Volver al inicio</a>
+    <button><a href="{% url 'productos_app:inicio' %}">Volver al inicio</a></button>
+    <button>Agregar al carrito</button>
+    <button>Comprar</button>
     
 </body>
 </html>
