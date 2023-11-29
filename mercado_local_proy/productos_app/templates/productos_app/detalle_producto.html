@@ -18,8 +18,12 @@
     <h1>{{ producto.nombreProducto }}</h1>
     <p>Contenido: {{ producto.descripcionProducto}}</p>
 
+    <form action="{% url 'compra_app:agregar_al_carrito' producto.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Agregar al carrito</button>
+    </form>
     <button><a href="{% url 'productos_app:inicio' %}">Volver al inicio</a></button>
-    <button><a href="{% url 'compra_app:carrito' %}">Agregar al carrito</a></button>
+    <button><a href="{% url 'compra_app:ver_carrito' %}">Ver carrito</a></button>
     <button>Comprar</button>
     
 </body>
