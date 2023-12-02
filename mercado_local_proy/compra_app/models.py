@@ -14,7 +14,7 @@ class Orden(models.Model):
 
 class Venta(models.Model):
     costoTotal = models.IntegerField(null=False, blank=False)
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, null=True, on_delete=models.CASCADE)
     ordenes = models.ManyToManyField(Orden, related_name='ventas')
 
 class HistorialCompra(models.Model):

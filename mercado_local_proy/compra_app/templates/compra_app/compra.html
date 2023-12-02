@@ -1,0 +1,37 @@
+<!-- proceder_pago.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceder al Pago</title>
+</head>
+<body>
+
+    <h1>Proceder al Pago</h1>
+
+    {% if carrito %}
+        <ul>
+            {% for orden in carrito %}
+                <li>
+                    {{ orden.producto.nombreProducto }}
+                    <br>
+                    Cantidad: {{ orden.cantidadProducto }}
+                    <br>
+                    Precio: ${{ orden.producto.precio }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else  %}
+        <p>El carrito está vacío</p>
+    {% endif %}
+
+    <p>Subtotal: ${{ costo_total }}</p>
+
+    <form method="post" action="{% url 'compra_app:procesar_pago' %}">
+        {% csrf_token %}
+        <button type="submit">Confirmar Pago</button>
+    </form>
+
+</body>
+</html>

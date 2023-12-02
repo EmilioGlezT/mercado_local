@@ -4,7 +4,8 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from productos_app.models import Producto
-from compra_app.models import Orden 
+from compra_app.models import Orden, Venta 
+from django.contrib import messages
 
 # Create your views here.
 ##
@@ -61,3 +62,47 @@ def modificar_cantidad_carrito(request, orden_id, operacion):
 
    
     return redirect('compra_app:ver_carrito')
+
+def procesar_pago(request):
+ 
+    carrito = Orden.objects.filter(venta__isnull=True)
+
+    if not carrito.exists():
+
+        return redirect('compra_app:ver_carrito')
+
+
+    for orden in carrito:
+        producto = orden.producto
+        if orden.cantidadProducto > producto.existencias:
+     
+            return render(request, 'compra_app/error_disponibilidad.html', {'producto': producto})
+
+      
+        producto.existencias -= orden.cantidadProducto
+        producto.save()
+
+
+    costo_total = sum(orden.costoOrden for orden in carrito)
+
+
+    cliente = None
+
+    if hasattr(request.user, 'cliente'):
+     cliente = request.user.cliente
+
+    venta = Venta.objects.create(
+        cliente=cliente,
+        costoTotal=costo_total
+    )
+
+   
+    for orden in carrito:
+        orden.venta = venta
+        orden.en_carrito = False
+        orden.save()
+
+    return render(request, 'compra_app/confirmacion_pago.html', {'venta': venta})
+
+def error_disponibilidad(request):
+    return render(request, 'compra_app/error_disponibilidad.html')
