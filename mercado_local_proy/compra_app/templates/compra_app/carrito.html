@@ -21,19 +21,19 @@
                 <br>
                 Precio: ${{ orden.producto.precio }}
                 
-                <!-- Formulario para eliminar el producto del carrito -->
+    
                 <form method="post" action="{% url 'compra_app:eliminar_del_carrito' orden.id %}">
                     {% csrf_token %}
                     <button type="submit">Eliminar</button>
                 </form>
 
-                <!-- Formulario para reducir la cantidad del producto en el carrito -->
+            
                 <form method="post" action="{% url 'compra_app:modificar_cantidad_carrito' orden.id 'restar' %}">
                     {% csrf_token %}
                     <button type="submit">-</button>
                 </form>
 
-                <!-- Formulario para aumentar la cantidad del producto en el carrito -->
+              
                 <form method="post" action="{% url 'compra_app:modificar_cantidad_carrito' orden.id 'sumar' %}">
                     {% csrf_token %}
                     <button type="submit">+</button>

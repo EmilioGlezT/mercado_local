@@ -16,20 +16,15 @@ from compra_app.models import Orden
       ##  return Orden.objects.all()
 
 def ver_carrito(request):
-  
     carrito = Orden.objects.filter(venta__isnull=True)
-
     subtotal = sum(orden.costoOrden for orden in carrito)
-    
     context = {'carrito': carrito, 'subtotal': subtotal}
     
     return render(request, 'compra_app/carrito.html', context)
 
 def agregar_al_carrito(request, producto_id):
-
     producto = Producto.objects.get(id=producto_id)
     
-
     orden, creado = Orden.objects.get_or_create(
         producto=producto,
         en_carrito=True,
@@ -46,20 +41,14 @@ def agregar_al_carrito(request, producto_id):
     return redirect('compra_app:ver_carrito')
 
 def eliminar_del_carrito(request, orden_id):
-    
     orden = Orden.objects.get(id=orden_id)
-    
-    
     orden.delete()
-
    
     return redirect('compra_app:ver_carrito')
 
 def modificar_cantidad_carrito(request, orden_id, operacion):
-  
     orden = Orden.objects.get(id=orden_id)
 
- 
     if operacion == 'sumar':
         orden.cantidadProducto += 1
     elif operacion == 'restar':
