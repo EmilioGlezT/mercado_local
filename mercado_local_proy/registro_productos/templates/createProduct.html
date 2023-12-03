@@ -1,3 +1,4 @@
+{% extends 'shared/layout.html' %}
 {% load static %}
 
 {% block title %} formulario {% endblock %}
@@ -10,7 +11,7 @@
 
     {% csrf_token %}
 
-    <label for='negocio'>Negocio</label>
+    <label for='negocio' class="form-label">Negocio</label>
     <input type='text' name='negocio' placeholder='Nombre del negocio'>
 
     <br>

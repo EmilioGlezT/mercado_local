@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'shared/layout.html' %}
 
+{% block content %}
     <h1>MERCADO LOCAL</h1>
 
     {% if catalogo_principal %}
@@ -20,5 +14,4 @@
         <p>No hay productos</p>
     {% endif %}
  
-</body>
-</html>
+{% endblock %}
