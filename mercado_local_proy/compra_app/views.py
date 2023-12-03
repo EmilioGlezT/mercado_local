@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from productos_app.models import Producto
-from compra_app.models import Orden, Venta 
+from compra_app.models import Orden, Venta , HistorialCompra
 from django.contrib import messages
 
 # Create your views here.
@@ -96,13 +96,30 @@ def procesar_pago(request):
         costoTotal=costo_total
     )
 
+    venta.save()
    
     for orden in carrito:
         orden.venta = venta
         orden.en_carrito = False
         orden.save()
 
-    return render(request, 'compra_app/confirmacion_pago.html', {'venta': venta})
+        HistorialCompra.objects.create(
+            producto=orden.producto,
+            costoCompra=orden.costoOrden,
+            venta=venta,
+            orden=orden
+        )
+
+
+    ordenes_asociadas = Orden.objects.filter(venta=venta)
+
+    return render(request, 'compra_app/confirmacion_pago.html', {'venta': venta, 'ordenes_asociadas': ordenes_asociadas})
 
 def error_disponibilidad(request):
     return render(request, 'compra_app/error_disponibilidad.html')
+
+def historial_compras(request):
+
+    historial_compras = HistorialCompra.objects.all()
+
+    return render(request, 'compra_app/historial_compras.html', {'historial_compras': historial_compras})
