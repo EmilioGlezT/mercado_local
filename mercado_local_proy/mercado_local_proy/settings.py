@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
-AUTH_USER_MODEL = "mercado_local_app.CustomUser"
+AUTH_USER_MODEL = "auth.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'mercado_local_proy.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        "NAME": "MercadoLocalDB",
+        "NAME": "DataBaseMercadoLocal",
         "USER": "postgres",
         "PASSWORD": "holaEmilio",
         "HOST": "127.0.0.1",

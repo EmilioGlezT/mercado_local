@@ -2,7 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from productos_app.models import Producto
 from mercado_local_app.models import Negocio
-
+from .forms import RegistroProducto
+from django.views.generic.edit import FormView
+from django.urls import reverse_lazy
 
 def registrarProductos(request):
     return render(request, 'registrarProductos.html')
@@ -39,12 +41,18 @@ def saveProducto(request):
         precio = precio
         )
         producto.save()
-        return HttpResponse(f"Producto creado: <strong>{producto.nombreProducto}" )
-    else:
-        return HttpResponse("<h2>No se pudo crear el producto</h2>")
+        
+   
 
 def createProducto(request):
     return render(request, 'createProduct.html')
         
 
-# Create your views here.
+class RegistroProducto(FormView):
+    template_name = 'registroProducto.html'  # Reemplaza 'tu_template.html' con la plantilla que deseas utilizar
+    form_class = RegistroProducto
+    success_url = reverse_lazy('producto')  # Reemplaza 'nombre_de_la_url_de_exito' con el nombre de la URL a la que redirigir después del registro
+
+    def form_valid(self, form):
+        form.save()  # Esto guarda el nuevo usuario en la base de datos
+        return super().form_valid(form)

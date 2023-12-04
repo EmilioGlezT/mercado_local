@@ -1,12 +1,12 @@
 from django.db import models
-from mercado_local_app.models  import Cliente
+from mercado_local_app.models  import UserProfile
 from productos_app.models import Producto
 
 # Create your models here.
 
 class Venta(models.Model):
     costoTotal = models.IntegerField(null=False, blank=False)
-    cliente = models.ForeignKey(Cliente,on_delete=models.CASCADE )
+    cliente = models.ForeignKey(UserProfile,on_delete=models.CASCADE )
 
 class Orden(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)

@@ -1,22 +1,27 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate
-
-from mercado_local_app.models import CustomUser, Vendedor, Cliente
+from django.contrib.auth.models import User
+from mercado_local_app.models import UserProfile, AbstractUser
 
 
 class RegisterForm(forms.ModelForm):
    class Meta:
-        model = CustomUser
+        model = UserProfile
         fields = "__all__"
 
-
-class RegisterVendedorForm(forms.ModelForm):
+class RegistroForm(UserCreationForm):
+    email = forms.EmailField()
     class Meta:
-        model = Vendedor
-        fields = "__all__"
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
 
-class RegisterClienteForm(forms.ModelForm):
-    class Meta:
-        model= Cliente
-        fields = "__all__"
+
+# class RegisterVendedorForm(forms.ModelForm):
+#     class Meta:
+#         model = Vendedor
+#         fields = "__all__"
+
+# class RegisterClienteForm(forms.ModelForm):
+#     class Meta:
+#         model= Cliente
+#         fields = "__all__"
