@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Pago</title>
+</head>
+<body>
+
+    <h1>¡Gracias por tu compra!</h1>
+
+    <p>Detalles de la compra:</p>
+
+    <ul>
+        {% for orden in ordenes_asociadas %}
+            <li>
+                {{ orden.producto.nombreProducto }}
+                <br>
+                Cantidad: {{ orden.cantidadProducto }}
+                <br>
+                Precio: ${{ orden.costoOrden }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p>Total: ${{ venta.costoTotal }}</p>
+
+</body>
+</html>
