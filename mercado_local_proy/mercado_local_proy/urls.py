@@ -28,7 +28,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # app listado productos
-    path('productos/', include('productos_app.urls')),
+    path('', include('productos.urls')),
+    path('compraApp/', include('compra_app.urls')),
 
 
     
