@@ -8,12 +8,23 @@
     {% if catalogo_principal %}
         <ul>
             {% for producto in catalogo_principal %}
-            <li><a href="{% url 'productos_app:detalle_producto' producto.id %}">
-                {{ producto.nombreProducto}}</a></li>
+            <li>
+                <a href="{% url 'productos_app:detalle_producto' producto.id %}">
+                {{ producto.nombreProducto}}
+                </a>
+                {% if producto.imagenProducto.url %}
+                <p>{{producto.imagenProducto.url}} </p>
+                <img src="../../excel.png" alt="imagen_producto">
+                {% endif%}
+            </li>
             {% endfor %}
         </ul>
     {% else  %}
         <p>No hay productos</p>
+    {% endif %}
+    {% if user.userprofile.is_vendedor %}
+    <a href="/registroProducto">Agrega un nuevo producto</a>
+    <a href="/listadoMisProductos">Ir a us productos</a>
     {% endif %}
  
 {% endblock %}

@@ -13,3 +13,7 @@ class Catalogo_ListView(ListView):
 class DetalleProductoView(DetailView):
     model = Producto
     template_name = "detalle_producto.html"
+
+class ProductosListView(ListView):
+    model = Producto
+    template_name="listado_productos.html"

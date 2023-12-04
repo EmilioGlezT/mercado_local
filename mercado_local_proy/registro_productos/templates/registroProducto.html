@@ -2,11 +2,16 @@
 
 
 {% block content %}
+{% if user.userprofile.is_vendedor %}
+
 <h2>Registro de Producto</h2>
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Dar de alta Producto</button>
 </form>
-  
+  {% else %}
+
+  <h1>No tienes autorizacion para crear un prodcto </h1>
+  {% endif%}
 {% endblock %}

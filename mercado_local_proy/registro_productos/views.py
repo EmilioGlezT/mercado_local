@@ -3,7 +3,7 @@ from django.shortcuts import render
 from productos_app.models import Producto
 from mercado_local_app.models import Negocio
 from .forms import RegistroProducto
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 def registrarProductos(request):
@@ -51,8 +51,22 @@ def createProducto(request):
 class RegistroProducto(FormView):
     template_name = 'registroProducto.html'  # Reemplaza 'tu_template.html' con la plantilla que deseas utilizar
     form_class = RegistroProducto
-    success_url = reverse_lazy('producto')  # Reemplaza 'nombre_de_la_url_de_exito' con el nombre de la URL a la que redirigir después del registro
+    success_url = reverse_lazy('')  # Reemplaza 'nombre_de_la_url_de_exito' con el nombre de la URL a la que redirigir después del registro
 
     def form_valid(self, form):
         form.save()  # Esto guarda el nuevo usuario en la base de datos
         return super().form_valid(form)
+
+class ProductoUpdateView(UpdateView):
+    model = Producto
+    fields = ["nombreProducto", "precio", "existencias"]
+    template_name = "producto_update_form.html"  # Ruta correcta
+    template_name_suffix = "_update_form"
+    success_url = reverse_lazy('home')
+
+
+    
+class ProductoDeleteView(DeleteView):
+    model = Producto
+    template_name = "producto_confirm_delete.html"  # Ruta correcta
+    success_url = reverse_lazy("home")

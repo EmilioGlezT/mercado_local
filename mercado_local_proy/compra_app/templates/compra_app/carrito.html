@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'shared/layout.html' %}
+{% block title%} Perfil de usuario: {% endblock %}
 
-    <h1>MERCADO LOCAL</h1>
+{% block content%}
 
     <h2>TU CARRITO</h2>
 
@@ -53,5 +47,4 @@
         {% csrf_token %}
         <button type="submit">PROCEDER AL PAGO</button>
     </form>
-</body>
-</html>
+{% endblock %}

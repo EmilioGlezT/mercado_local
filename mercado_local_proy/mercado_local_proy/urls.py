@@ -21,14 +21,14 @@ from mercado_local_app.views import UsersListView, RegistroUsuarioView, Registro
 from mercado_local_app import views
 import mercado_local_app.views
 import  registro_productos.views
-from registro_productos.views import RegistroProducto
+from registro_productos.views import RegistroProducto, ProductoUpdateView, ProductoDeleteView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     # app listado productos
-    path('', include('productos.urls')),
+    path('', include('productos_app.urls')),
     path('compraApp/', include('compra_app.urls')),
 
 
@@ -41,7 +41,10 @@ urlpatterns = [
     path('createProduct/' , registro_productos.views.createProducto, name = "create"),
     path('crear-producto/', registro_productos.views.crearProduto),
     path('save-product', registro_productos.views.saveProducto, name= 'save'),
-    path('registroProducto/', RegistroProducto.as_view(), name='registro_usuarioDjango'),
+    path('registroProducto/', RegistroProducto.as_view(), name='registro-producto'),
+    path('actualizar_producto/<int:pk>/', ProductoUpdateView.as_view(), name='actualizar_producto'),
+     path('eliminar_producto/<int:pk>/', ProductoDeleteView.as_view(), name='eliminar_producto'),
+    
 
 
     # app usuario y login
