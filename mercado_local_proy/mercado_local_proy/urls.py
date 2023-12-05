@@ -37,10 +37,8 @@ urlpatterns = [
   
 
     # app registro, eliminacion, creacion producto
-    # path('productoreg/', include('registro_productos.urls')), 
-    path('createProduct/' , registro_productos.views.createProducto, name = "create"),
-    path('crear-producto/', registro_productos.views.crearProduto),
-    path('save-product', registro_productos.views.saveProducto, name= 'save'),
+    
+    
     path('registroProducto/', RegistroProducto.as_view(), name='registro-producto'),
     path('actualizar_producto/<int:pk>/', ProductoUpdateView.as_view(), name='actualizar_producto'),
      path('eliminar_producto/<int:pk>/', ProductoDeleteView.as_view(), name='eliminar_producto'),

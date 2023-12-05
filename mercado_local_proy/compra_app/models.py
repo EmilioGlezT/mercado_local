@@ -6,8 +6,8 @@ from productos_app.models import Producto
 # Create your models here.
 
 class Venta(models.Model):
-    costoTotal = models.IntegerField(null=False, blank=False)
-    cliente = models.ForeignKey(UserProfile,on_delete=models.CASCADE )
+    costoTotal = models.IntegerField(null=False, blank=False) 
+    cliente = models.ForeignKey(UserProfile,on_delete=models.CASCADE, null=True )
 
 class Orden(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
