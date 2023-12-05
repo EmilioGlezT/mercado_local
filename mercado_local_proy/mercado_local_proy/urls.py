@@ -33,7 +33,7 @@ urlpatterns = [
 
 
     
-    
+     path('accounts/', include('django.contrib.auth.urls')),
   
 
     # app registro, eliminacion, creacion producto

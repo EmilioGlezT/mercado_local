@@ -6,6 +6,8 @@ from django.views.generic import ListView, DetailView
 from productos_app.models import Producto
 from compra_app.models import Orden, Venta , HistorialCompra
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 ##
@@ -63,6 +65,8 @@ def modificar_cantidad_carrito(request, orden_id, operacion):
    
     return redirect('compra_app:ver_carrito')
 
+
+@login_required
 def procesar_pago(request):
  
     carrito = Orden.objects.filter(venta__isnull=True)
