@@ -86,10 +86,7 @@ def procesar_pago(request):
     costo_total = sum(orden.costoOrden for orden in carrito)
 
 
-    cliente = None
-
-    if hasattr(request.user, 'cliente'):
-     cliente = request.user.userprofile
+    cliente = request.user.userprofile
 
     venta = Venta.objects.create(
         cliente=cliente,
@@ -120,6 +117,6 @@ def error_disponibilidad(request):
 
 def historial_compras(request):
 
-    historial_compras = HistorialCompra.objects.all()
+    historial_compras = HistorialCompra.objects.filter(venta__cliente=request.user.userprofile)
 
     return render(request, 'compra_app/historial_compras.html', {'historial_compras': historial_compras})
