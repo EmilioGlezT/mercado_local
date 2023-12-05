@@ -89,7 +89,7 @@ def procesar_pago(request):
     cliente = None
 
     if hasattr(request.user, 'cliente'):
-     cliente = request.user.cliente
+     cliente = request.user.userprofile
 
     venta = Venta.objects.create(
         cliente=cliente,

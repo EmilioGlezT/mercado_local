@@ -41,9 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap5'
 ]
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
 
-AUTH_USER_MODEL = "mercado_local_app.CustomUser"
+AUTH_USER_MODEL = "auth.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,7 +63,7 @@ ROOT_URLCONF = 'mercado_local_proy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS':  [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,9 +85,9 @@ WSGI_APPLICATION = 'mercado_local_proy.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        "NAME": "MercadoLO",
+        "NAME": "DataBaseMercadoLocal",
         "USER": "postgres",
-        "PASSWORD": "root",
+        "PASSWORD": "holaEmilio",
         "HOST": "127.0.0.1",
         "PORT": "5432",
     }

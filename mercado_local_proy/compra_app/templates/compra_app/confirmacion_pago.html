@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de Pago</title>
-</head>
-<body>
+{% extends 'shared/layout.html' %}
+{% block title%} Perfil de usuario: {% endblock %}
+
+{% block content%}
 
     <h1>¡Gracias por tu compra!</h1>
 
@@ -25,5 +21,4 @@
 
     <p>Total: ${{ venta.costoTotal }}</p>
 
-</body>
-</html>
+{% endblock %}

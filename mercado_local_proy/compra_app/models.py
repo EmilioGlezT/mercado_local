@@ -1,9 +1,13 @@
 from django.db import models
-from mercado_local_app.models  import Cliente
+from mercado_local_app.models  import UserProfile
 from productos_app.models import Producto
 
 
 # Create your models here.
+
+class Venta(models.Model):
+    costoTotal = models.IntegerField(null=False, blank=False) 
+    cliente = models.ForeignKey(UserProfile,on_delete=models.CASCADE, null=True )
 
 class Orden(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
@@ -12,9 +16,7 @@ class Orden(models.Model):
     costoOrden = models.IntegerField(null=False, blank=False)
     en_carrito = models.BooleanField(default=True)
 
-class Venta(models.Model):
-    costoTotal = models.IntegerField(null=False, blank=False)
-    cliente = models.ForeignKey(Cliente, null=True, on_delete=models.CASCADE)
+
 
 
 class HistorialCompra(models.Model):

@@ -1,0 +1,27 @@
+{% extends 'shared/layout.html' %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+Hi {{ user.username }}!
+
+{% if user.userprofile.is_vendedor %}
+<a class="btn btn-success" href="/createProduct">Da de alta Producto </a>
+<a class="btn btn-success" href="/modificaProducto">Modifica Producto(s) </a>
+<a class="btn btn-danger" href="/eliminaProducto">Elimina Producto(s) </a>
+{% elif user.userprofile.is_cliente %}
+<p><a href=""></a> Ver Historial Compra</p>
+<br>
+<p><a href=""></a> Ver Carrito de compras</p>
+
+
+{% endif %}
+<p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+<p>You are not logged in</p>
+<a href="{% url 'login' %}">Log In</a>
+{% endif %}
+
+
+{% endblock %}

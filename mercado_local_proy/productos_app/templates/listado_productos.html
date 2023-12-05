@@ -1,0 +1,16 @@
+{% extends 'shared/layout.html' %}
+{% block title%} Mis productos: {% endblock %}
+
+{% block content%}
+
+<h1> Inventario de mis productos:</h1>
+<ul>
+    {% for productos in object_list %}
+    <li>   
+        <a href="{% url 'actualizar_producto' pk=productos.id %}">  {{productos.nombreProducto}}</a>
+        Existencias: {{productos.existencias}}
+    </li>
+    {% endfor%}
+</ul>
+
+{% endblock %}

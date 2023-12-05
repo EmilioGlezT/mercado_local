@@ -1,0 +1,31 @@
+{% extends 'shared/layout.html' %}
+{% block title%} Perfil de usuario: {% endblock %}
+
+{% block content%}
+
+{% if user.is_authenticated and user.userprofile %}
+
+Hi {{ user.username }}!
+<br>
+
+
+<p>Colonia: {{ user.userprofile.colonia }} </p>
+  <p>Código Postal: {{ user.userprofile.codigoPostal }} </p>
+  <p>Número: {{ user.userprofile.numero }} </p>
+  {% if user.userprofile.is_cliente %}
+  <p> SOY UN USUARIO TIPO CLIENTE</p>
+  {% else %}
+  <p> SOY UN USUARIO TIPO VENDEDOR</p>
+  {% endif %}
+<p><a href="{% url 'logout' %}">Log Out</a></p>
+
+
+{% else %}
+<p class="text-danger">You are not logged in</p>
+<a class="btn btn-primary" href="{% url 'login' %}">Log In</a>
+<p class="mt-3">No tienes una cuenta? </p> <a class="btn btn-success" href="/registroUser">Registrate </a>
+
+{% endif %}
+
+
+{% endblock %}

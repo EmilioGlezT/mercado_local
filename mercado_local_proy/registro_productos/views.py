@@ -2,49 +2,30 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from productos_app.models import Producto
 from mercado_local_app.models import Negocio
+from .forms import RegistroProducto
+from django.views.generic.edit import FormView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 
-def registrarProductos(request):
-    return render(request, 'registrarProductos.html')
+class RegistroProducto(FormView):
+    template_name = 'registroProducto.html' 
+    form_class = RegistroProducto
+    success_url = reverse_lazy('') 
 
-def crearProduto(request, negocio, nombreProducto, descripcionProducto, imagenProducto, precio):
-    producto = Producto(
-    negocio = negocio,
-    nombreProducto = nombreProducto,
-    descripcionProducto = descripcionProducto,
-    imagenProducto = imagenProducto,
-    precio = precio
-    )
-    producto.save()
-    return HttpResponse(f"Producto creado: <strong>{producto.nombreProducto}" )
+    def form_valid(self, form):
+        form.save()  
+        return super().form_valid(form)
+
+class ProductoUpdateView(UpdateView):
+    model = Producto
+    fields = ["nombreProducto", "precio", "existencias"]
+    template_name = "producto_update_form.html"  # Ruta correcta
+    template_name_suffix = "_update_form"
+    success_url = reverse_lazy('home')
+
+
     
-def saveProducto(request):
-    if request.method == 'POST':
-        """negocio = request.GET.get('negocio')"""
-
-        negocioid = 1
-        negocio = Negocio.objects.get(id=negocioid)
-        nombreProducto = request.POST.get('nombreProducto')
-        descripcionProducto = request.POST.get('descripcionProducto')
-        imagenProducto = request.POST.get('imagenProducto')
-        categoria = request.POST.get('categoria')
-        precio = request.POST.get('precio')     
-
-        producto = Producto(
-        negocio = negocio,
-        nombreProducto = nombreProducto,
-        categoria = categoria,
-        descripcionProducto = descripcionProducto,
-        imagenProducto = imagenProducto,
-        precio = precio
-        )
-        producto.save()
-        return HttpResponse(f"Producto creado: <strong>{producto.nombreProducto}" )
-    else:
-        return HttpResponse("<h2>No se pudo crear el producto</h2>")
-
-def createProducto(request):
-    return render(request, 'createProduct.html')
-        
-
-# Create your views here.
+class ProductoDeleteView(DeleteView):
+    model = Producto
+    template_name = "producto_confirm_delete.html"  # Ruta correcta
+    success_url = reverse_lazy("home")

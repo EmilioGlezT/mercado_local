@@ -15,22 +15,58 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from mercado_local_app.views import UsersListView, VendedoresListView, ClientesListView
+from django.urls import path, include
+from django.views.generic import TemplateView
+from mercado_local_app.views import UsersListView, RegistroUsuarioView, RegistroView
 from mercado_local_app import views
 import mercado_local_app.views
-from registro_productos import views
-import registro_productos.views
-from django.urls import include, path
+import  registro_productos.views
+from registro_productos.views import RegistroProducto, ProductoUpdateView, ProductoDeleteView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # app listado productos
     path('', include('productos_app.urls')),
     path('compraApp/', include('compra_app.urls')),
+
+
+    
+    
+  
+
+    # app registro, eliminacion, creacion producto
+    
+    
+    path('registroProducto/', RegistroProducto.as_view(), name='registro-producto'),
+    path('actualizar_producto/<int:pk>/', ProductoUpdateView.as_view(), name='actualizar_producto'),
+     path('eliminar_producto/<int:pk>/', ProductoDeleteView.as_view(), name='eliminar_producto'),
+    
+
+
+    # app usuario y login
+    
+     
     path('getAllUsers/',UsersListView.as_view()),
-    path('getAllVendedores/',VendedoresListView.as_view()),
-    path('getAllClientes/',ClientesListView.as_view()),
-    path('createProduct/' , registro_productos.views.createProducto, name = "create"),
-    path('crear-producto/', registro_productos.views.crearProduto),
-    path('save-product', registro_productos.views.saveProducto, name= 'save')
+    # path('getAllVendedores/',VendedoresListView.as_view()),
+    # path('getAllClientes/',ClientesListView.as_view()),
+    path('cuentas/', include("django.contrib.auth.urls")),
+
+
+    path('registroDatosExtras/', RegistroUsuarioView.as_view(), name='registro_datosExtra'),
+    path('registroUser/', RegistroView.as_view(), name='registro_usuarioDjango'),
+    
+    # path('registroVendedor/', RegistroVendedor.as_view(), name='registro_vendedor'),
+    #  path('registroCliente/', RegistroCliente.as_view(), name='registro_cliente'),
+
+
+    #paginas principales
+    path("", TemplateView.as_view(template_name="home.html"), name="home"),
+    
+    path("miperfil/", TemplateView.as_view(template_name="DetailViewTemplates/PerfilDetail.html"), name="perfil"),
+    path("info/", TemplateView.as_view(template_name="info.html"), name="info")     
+
+
+
 ]

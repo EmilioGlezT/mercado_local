@@ -1,0 +1,14 @@
+{% extends 'shared/layout.html' %}
+
+
+{% block content %}
+
+
+
+<form method="post">{% csrf_token %}
+    <p>¿Estas seguro que quieres eliminar "{{ producto.nombreProducto }}"?</p>
+    {{ form }}
+    <input type="submit" value="Confirm">
+</form>
+
+{% endblock %}
